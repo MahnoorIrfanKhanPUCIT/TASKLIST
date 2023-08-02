@@ -2,7 +2,6 @@ import React,{useState} from "react";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import Todos from "./components/MainLayout/Todos.jsx";
 import Footer from "./components/Footer/Footer.jsx";
-import Form from "./components/MainLayout/Form.jsx";
 import './App.css';
 
 function App() 
@@ -14,9 +13,58 @@ function App()
     
    const [todos,setTodos]=useState(dummyTodos);
 
+   const [edit,setEdit]=useState({
+    edit:false,
+    item:{
+      text:"",
+      id:""
+    }
+   });
+   
+   const editEnableHandler=(item)=>
+   {
+    setEdit({
+      edit:true,
+      item:item
+    })
+   }
+   
+   const changeEditInputHandler=(value)=>
+   {
+      setEdit((prevState)=>{
+        return { 
+          ...prevState,
+          item:{
+            ...prevState.item,
+            text:value
+          }
+        }
+      })
+   }
+
+   const submitEditHandler=()=>
+   {
+    let newTodos=todos.map((todo,index)=>{
+      if(edit.item.id===index)
+      {
+        return edit.item.text;
+      }
+      else
+      {
+        return todo;
+      }
+    })
+    setTodos(newTodos);
+    setEdit({
+      edit:false,
+      item:{
+        text:"",
+        id:""},
+      });
+   }
+    
     const getUserInput=(userInput)=>
     {
-      console.log(userInput);
       setTodos([userInput,...todos]);
     }
     
@@ -27,27 +75,19 @@ function App()
       })
       setTodos(filterDeleteTodos);
     }
-
-    const editHandler=(id)=>
-    {
-      const filterEditTodos=todos.filter((todo,index)=>{
-        return index === id;
-      })
-      const editedTask=filterEditTodos[0];
-      console.log(editedTask);
-      editTask(editedTask);
-    }
     
     const clearAll=()=>
     {
       setTodos([]);
     }
+    
+  
      
-
+  
   return (
     <div>
       <Navbar />
-      <Todos todos={todos} editHandler={editHandler} getUserInput={getUserInput} deleteHandler={deleteHandler} clearAll={clearAll}/>
+      <Todos todos={todos} getUserInput={getUserInput} deleteHandler={deleteHandler} clearAll={clearAll} editEnableHandler={editEnableHandler} edit={edit} changeEditInputHandler={changeEditInputHandler} submitEditHandler={submitEditHandler}/>
       <Footer />
     </div>
   );

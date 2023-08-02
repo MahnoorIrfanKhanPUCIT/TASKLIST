@@ -1,0 +1,13 @@
+.alert-success
+{
+    background-color: lightgreen;
+    border: 2px solid green;
+    color: green;
+}
+
+.alert-danger
+{
+    background-color: lightcoral;
+    border: 2px solid red;
+    color: red;
+}

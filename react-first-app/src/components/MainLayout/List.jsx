@@ -7,7 +7,7 @@ const List=(props)=>
         <div className="list-group list-group-flush">
             <ul className="p-0 mt-3 me-4">
                 {props.todos.map((element,index)=>{
-                    return (<ListElement id={index} key={index} todo={element} editHandler={props.editHandler} deleteHandler={props.deleteHandler}/>)
+                    return (<ListElement id={index} key={index} todo={element} editEnableHandler={props.editEnableHandler} deleteHandler={props.deleteHandler}/>)
                 })}
             </ul>
         </div>

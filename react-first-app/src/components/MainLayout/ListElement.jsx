@@ -9,10 +9,15 @@ const ListElement=(props)=>
         props.deleteHandler(props.id);
     }
 
-    const editHandler=()=>
+    const editEnableHandler=()=>
     {
-        props.editHandler(props.id);
+        let dataObj={
+            text:props.todo,
+            id:props.id
+        }
+        props.editEnableHandler(dataObj);
     }
+    
     
     return (
         <div>
@@ -21,7 +26,7 @@ const ListElement=(props)=>
                     {props.todo}
                 </p>
                 <div>
-                    <button className="btn btn-md"><FontAwesomeIcon icon={faPenToSquare} onClick={editHandler} /></button>
+                    <button className="btn btn-md"><FontAwesomeIcon icon={faPenToSquare} onClick={editEnableHandler}/></button>
                     <button className="btn btn-md"><FontAwesomeIcon icon={faTrash} onClick={deleteHandler}/></button>
                 </div>
             

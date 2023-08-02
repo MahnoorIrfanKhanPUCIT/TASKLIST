@@ -11,9 +11,9 @@ const Todos=(props)=>
             <div className="card card-body bg-light p-5 w-50">
             <Heading title="RENDER TASKS:"/>
             <div className="d-flex flex-column justify-content-start align-items-start">
-            <Form getUserInput={props.getUserInput} editTask={props.editTask}  />
+            <Form getUserInput={props.getUserInput} edit={props.edit} changeEditInputHandler={props.changeEditInputHandler} submitEditHandler={props.submitEditHandler}/>
             <Heading title="PENDING:" />
-            <List todos={props.todos} deleteHandler={props.deleteHandler} editHandler={props.editHandler}/>
+            <List todos={props.todos} deleteHandler={props.deleteHandler} editEnableHandler={props.editEnableHandler}/>
             <TodoFooter todos={props.todos} clearAll={props.clearAll}/>
             </div>
             </div>
